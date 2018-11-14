@@ -2,8 +2,12 @@ package com.java.tech.string;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.TreeMap;
+import java.util.TreeSet;
+
 import com.java.tech.common.CustomException;
 import com.java.tech.common.ErrorCodes;
 
@@ -209,5 +213,93 @@ public class StringOperations {
 			return true;
 		}
 		return false;
+	}
+
+	/******************************************************************************************/
+
+	public void permutateDuplicate(String input) {
+		HashMap<Character, Integer> charToCountMap = new HashMap<>();
+		for (Character ch : input.toCharArray()) {
+			if (charToCountMap.containsKey(ch)) {
+				charToCountMap.put(ch, charToCountMap.get(ch) + 1);
+			} else {
+				charToCountMap.put(ch, 1);
+			}
+		}
+
+		permuatationDuplicate(charToCountMap, new StringBuilder(), input.length());
+
+	}
+
+	public void permuatationDuplicate(HashMap<Character, Integer> charToCountMap, StringBuilder output, int length) {
+		if (output.length() == length) {
+			System.out.println(output);
+		}
+
+		for (Character ch : charToCountMap.keySet()) {
+			if (charToCountMap.get(ch) <= 0) {
+				continue;
+			}
+			charToCountMap.put(ch, charToCountMap.get(ch) - 1);
+			output.append(ch);
+			permuatationDuplicate(charToCountMap, output, length);
+			output.setLength(output.length() - 1);
+			charToCountMap.put(ch, charToCountMap.get(ch) + 1);
+
+		}
+	}
+
+	/******************************************************************************************/
+
+	public void parens(int count) {
+
+		parensthesisCount(new StringBuilder(), count, count);
+	}
+
+	public void parensthesisCount(StringBuilder output, int leftParensCount, int rightParensCount) {
+		if (leftParensCount == 0 && rightParensCount == 0) {
+			System.out.println(output);
+		}
+
+		if (leftParensCount > 0) {
+			output.append("(");
+			parensthesisCount(output, leftParensCount - 1, rightParensCount);
+			output.setLength(output.length() - 1);
+		}
+		if (rightParensCount > 0 && leftParensCount < rightParensCount) {
+			output.append(")");
+			parensthesisCount(output, leftParensCount, rightParensCount - 1);
+			output.setLength(output.length() - 1);
+		}
+	}
+
+	/******************************************************************************************/
+
+	public ArrayList<String> sortWithAnagramsNextToEachOther(String[] list) {
+		TreeMap<String, TreeSet<String>> map = new TreeMap<String, TreeSet<String>>();
+		for (String s : list) {
+			char[] array = s.toCharArray();
+			Arrays.sort(array);
+			String sortedString = new String(array);
+			//System.out.println(sortedString);
+			//Remember to convert the character array to string, you need new String and not
+			//the toString method
+
+			if (map.containsKey(sortedString)) {
+				TreeSet<String> set = map.get(sortedString);
+				set.add(s);
+			} else {
+				TreeSet<String> set = new TreeSet<>();
+				set.add(s);
+				map.put(sortedString, set);
+			}
+		}
+		ArrayList<String> output = new ArrayList<>();
+		for (String s : map.keySet()) {
+			
+			output.addAll(map.get(s));
+		}
+
+		return output;
 	}
 }

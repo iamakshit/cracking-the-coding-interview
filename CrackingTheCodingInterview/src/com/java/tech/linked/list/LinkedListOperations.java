@@ -49,6 +49,13 @@ public class LinkedListOperations {
 			case "palindrome":
 				System.out.println(checkIfPalindrome(head));
 				break;
+			case "count":
+				System.out.println(countNoOfNodes(head));
+				break;
+			case "nthnode":
+				System.out.println("Enter the place from which node is available");
+				data = Integer.parseInt(ak.nextLine());
+				System.out.println(getTheNthNode(head, data));
 			case "exit":
 				System.exit(0);
 			default:
@@ -56,6 +63,39 @@ public class LinkedListOperations {
 
 			}
 		}
+	}
+
+	public int getTheNthNode(Node head, int n) {
+
+		if (head == null) {
+			return -1;
+		}
+
+		while (head != null && n > 1) {
+			head = head.next;
+			n -= 1;
+		}
+
+		if (head == null) {
+			return -1;
+		}
+
+		return head.data;
+		// for(Node cur=head;n>0&& cur!=null;cur=cur.next, n-=1) //here for middle one
+		// "," does not work
+
+	}
+
+	public int countNoOfNodes(Node head) {
+		int count = 0;
+		if (head == null) {
+			return 0;
+		}
+		while (head != null) {
+			head = head.next;
+			count += 1;
+		}
+		return count;
 	}
 
 	public void displayList(Node head) {
@@ -129,7 +169,7 @@ public class LinkedListOperations {
 		}
 
 		Node fastNode = head, slowNode = head;
-		while (fastNode != null && fastNode.next != null) { //be very careful in the conditions
+		while (fastNode != null && fastNode.next != null) { // be very careful in the conditions
 			fastNode = fastNode.next.next;
 			slowNode = slowNode.next;
 		}
