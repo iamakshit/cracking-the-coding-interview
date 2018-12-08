@@ -1,9 +1,13 @@
 package com.java.tech.numbers;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.List;
 
 import com.java.tech.common.CustomException;
 import com.java.tech.common.ErrorCodes;
@@ -224,4 +228,116 @@ public class NumbersOperations {
 		}
 		System.out.println();
 	}
+
+	/******************************************************************************************/
+
+	public int sumOfDigits(int number) {
+		if (number <= 0) {
+			return 0;
+		}
+
+		int sum = number % 10;
+		sum += sumOfDigits(number / 10);
+		return sum;
+	}
+
+	/******************************************************************************************/
+
+	public int powerFunction(int x, int N) {
+		int output = 0;
+		if (N == 0) {
+			return 1;
+		} else if (N == 1) {
+			return x;
+		} else {
+			output = powerFunction(x, N / 2);
+			output *= output;
+			if (N % 2 != 0) {
+				output *= x;
+			}
+		}
+		return output;
+	}
+
+	/******************************************************************************************/
+
+	// MAJOR LESSONS, TAKING THE ARRAY IN REVERSE WORKS, NOT IN THE FORWARD
+	// DIRECTION
+	// TAKING THE ARRAY IN SORTED WAY IS THE SOLUTION.
+	public void divideArrayInMinDifference(int[] a) {
+		Arrays.sort(a);
+		int rightSum = 0, leftSum = 0;
+		LinkedList<Integer> rightList = new LinkedList<>();
+		LinkedList<Integer> leftList = new LinkedList<>();
+		for (int i = a.length - 1; i >= 0; i--) {
+			if (Math.abs(rightSum - leftSum + a[i]) >= Math.abs(Math.abs(rightSum - leftSum - a[i]))) {
+				leftSum += a[i];
+				leftList.add(a[i]);
+			} else {
+				rightSum += a[i];
+				rightList.add(a[i]);
+			}
+		}
+		for (int i : rightList) {
+			System.out.print(i + " ");
+		}
+		System.out.println();
+		for (int i : leftList) {
+			System.out.print(i + " ");
+		}
+		System.out.println();
+		System.out.println(Math.abs(rightSum - leftSum));
+	}
+
+	/******************************************************************************************/
+
+	// https://www.geeksforgeeks.org/reduce-a-number-to-1-by-performing-given-operations/
+	public static int operationsToReduceToOne(int number) {
+		if (number <= 1) {
+			return 0;
+		} else if (number % 2 == 0) {
+			return (1 + operationsToReduceToOne(number / 2));
+		} else {
+			return Math.min((1 + operationsToReduceToOne(number - 1)), (1 + operationsToReduceToOne(number + 1)));
+		}
+	}
+
+	/******************************************************************************************/
+
+	// https://practice.geeksforgeeks.org/problems/largest-number-formed-from-an-array/0
+	public static String formLargestNumber(List<String> list) {
+
+		Collections.sort(list, customComparator);
+		StringBuilder output = new StringBuilder();
+		for (String i : list) {
+			output.append(i);
+		}
+		return output.toString();
+	}
+
+	public static Comparator<String> customComparator = new Comparator<String>() {
+
+		@Override
+		public int compare(String a, String b) {
+			String firstString = a + b;
+			String secondString = b + a;
+			return (-1 *firstString.compareTo(secondString));
+		}
+
+	};
+
+	/******************************************************************************************/
+
+	public static void main(String args[]) {
+
+		// System.out.println(operationsToReduceToOne(7));
+		Integer a, b, c; // This is a valid syntax
+		String[] list = { "5", "9", "3", "30", "34" };
+		// String[] list = {"33","34"};
+
+		Arrays.sort(list);
+		System.out.println(formLargestNumber(Arrays.asList(list))); // VERY GOOD COMMAND
+
+	}
+
 }

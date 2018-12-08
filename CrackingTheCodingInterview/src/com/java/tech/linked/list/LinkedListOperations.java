@@ -58,11 +58,42 @@ public class LinkedListOperations {
 				System.out.println(getTheNthNode(head, data));
 			case "exit":
 				System.exit(0);
+			case "insertSort":
+				System.out.println("Enter a value");
+				data = Integer.parseInt(ak.nextLine());
+				head = insertSort(head, data); // Giving out reference is very important
+				displayList(head);
+				break;
+
 			default:
 				System.out.println("Wrong option entered");
 
 			}
 		}
+	}
+
+	private Node insertSort(Node head, Integer data) {
+		Node node = new Node(data);
+		if (head == null) {
+			return node;
+		}
+
+		if (head.data > node.data) {
+			node.next = head;
+			return node;
+		}
+		Node prev, cur;
+		for (prev = null, cur = head; cur != null; prev = cur, cur = cur.next) {
+			if (cur.data >= node.data) {
+				prev.next=node;
+				node.next=cur;
+				return head;
+			}
+
+		}
+
+		prev.next = node;
+		return head;
 	}
 
 	public int getTheNthNode(Node head, int n) {

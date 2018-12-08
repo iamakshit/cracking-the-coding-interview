@@ -281,9 +281,10 @@ public class StringOperations {
 			char[] array = s.toCharArray();
 			Arrays.sort(array);
 			String sortedString = new String(array);
-			//System.out.println(sortedString);
-			//Remember to convert the character array to string, you need new String and not
-			//the toString method
+			// System.out.println(sortedString);
+			// Remember to convert the character array to string, you need new String and
+			// not
+			// the toString method
 
 			if (map.containsKey(sortedString)) {
 				TreeSet<String> set = map.get(sortedString);
@@ -296,10 +297,59 @@ public class StringOperations {
 		}
 		ArrayList<String> output = new ArrayList<>();
 		for (String s : map.keySet()) {
-			
+
 			output.addAll(map.get(s));
 		}
 
 		return output;
+	}
+
+	/******************************************************************************************/
+
+	public void generateInterleavingStrings(String s1, String s2, int l1, int l2, StringBuilder finalString) {
+		if (finalString.length() == (s1.length() + s2.length())) {
+			System.out.println(finalString);
+		}
+
+		if (l1 < s1.length()) {
+			finalString.append(s1.charAt(l1));
+			generateInterleavingStrings(s1, s2, l1 + 1, l2, finalString);
+			finalString.setLength(finalString.length() - 1);
+		}
+		if (l2 < s2.length()) {
+			finalString.append(s2.charAt(l2));
+			generateInterleavingStrings(s1, s2, l1, l2 + 1, finalString);
+			finalString.setLength(finalString.length() - 1);
+
+		}
+	}
+
+	/******************************************************************************************/
+
+	//https://practice.geeksforgeeks.org/problems/recursively-remove-all-adjacent-duplicates/0
+	public static String removeAdjacentDuplicates(String input) {
+		StringBuilder output = new StringBuilder();
+		for (int i = 0; i < input.length(); i++) {
+			Character ch = input.charAt(i);
+			int count = 0;
+			i += 1;
+			while (i < input.length() && (ch == input.charAt(i))) {
+				++i;
+				++count;
+			}
+			i -= 1;
+			if (count == 0) {
+				output.append(ch);
+			}
+		}
+		return output.toString();
+	}
+
+	public static void main(String args[]) {
+		System.out.println(removeAdjacentDuplicates("geeksforgeek"));
+		System.out.println(removeAdjacentDuplicates("acaaabbbacdddd"));
+		String x = "0";
+		String y = "1";
+		
 	}
 }

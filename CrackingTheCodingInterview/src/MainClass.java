@@ -10,6 +10,7 @@ import com.java.tech.common.data.structures.variations.MyQueue;
 import com.java.tech.common.data.structures.variations.StackOfPlates;
 import com.java.tech.dp.Coins;
 import com.java.tech.dp.FibbonacciSeries;
+import com.java.tech.dp.NQueens;
 import com.java.tech.linked.list.LinkedListOperations;
 import com.java.tech.linked.list.Node;
 import com.java.tech.numbers.NumbersOperations;
@@ -17,16 +18,44 @@ import com.java.tech.ood.callcenter.employee.Employee;
 import com.java.tech.ood.callcenter.employee.Manager;
 import com.java.tech.ood.hashmap.CustomHashMap;
 import com.java.tech.sort.CountingSort;
+import com.java.tech.sort.MergeSort;
 import com.java.tech.string.StringOperations;
 import com.java.tech.trees.TreeNode;
 import com.java.tech.trees.TreeOperations;
+
+class X {
+	//
+	public X() {
+
+	}
+
+	public Integer y;
+}
 
 public class MainClass {
 
 	static Boolean sa;
 
-	public static void main(String args[]) throws CustomException {
+	public static void testMethod(X x, Integer a) {
+		x.y = 1;
+		a = 2;
+	}
 
+	public static void main(String args[]) throws CustomException {
+		
+		ArrayList<String> A;
+		
+		int[] a = { 10, 1, 4, 3, 2, 7, 9, 12 };
+
+		MergeSort mS = new MergeSort();
+		mS.sort(a, 0, a.length);
+		mS.displayArray(a);
+
+	}
+
+	public void NQueens() {
+		NQueens nQueens = new NQueens(4);
+		nQueens.placeNQueens(0);
 	}
 
 	public void bitWiseOperation() {
@@ -167,10 +196,19 @@ public class MainClass {
 		Node head = new Node(3);
 		// ops.selectOptions(head);
 		// ops.selectOptions(head);
+		LinkedListOperations linkedOps = new LinkedListOperations();
+		// Node head = new Node(3);
+		// linkedOps.selectOptions(head);
 	}
 
 	private static void numberOperations() {
 		NumbersOperations nOps = new NumbersOperations();
+		// int[] a = {1,4,5,8,9,2,3,6,7,10};
+		int[] a = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+		nOps.divideArrayInMinDifference(a);
+		System.out.println(nOps.sumOfDigits(98101));
+		System.out.println(nOps.powerFunction(10, 3));
+
 		int[] list = { 5, 7, 10, 12, 15, 18, 20 };
 		nOps.sumOfSubsets(list, 35);
 
@@ -195,7 +233,10 @@ public class MainClass {
 
 	}
 
-	private static void stringOperations() {
+	private static void stringOperations() throws CustomException {
+		StringOperations sOps = new StringOperations();
+		sOps.generateInterleavingStrings("ABC", "DEF", 0, 0, new StringBuilder());
+
 		StringOperations strOps = new StringOperations();
 		strOps.parens(3);
 
@@ -208,7 +249,7 @@ public class MainClass {
 			System.out.println(s);
 		}
 
-		// System.out.println(strOps.stringCompression("aabcccccaaa"));
+		System.out.println(strOps.stringCompression("aabcccccaaa"));
 
 		System.out.println(strOps.checkifOneAway("pale", "ple"));
 		System.out.println(strOps.checkifOneAway("pales", "pale"));
@@ -219,26 +260,8 @@ public class MainClass {
 		str = str.replaceAll("\\s+", " ");
 		System.out.println("(" + str + ")");
 
-		// String input = new String("");
-		// System.out.println(input);
-
-		String option = null;
-		if (option == null || option.isEmpty()) {
-			// System.out.println("ghghhg");
-		}
-
-		// option = "Akshit";
-
-		// String x = "ab".substring(1, 1);
-		// System.out.println(x);
-
-		try {
-			StringOperations stringOperation = new StringOperations();
-			stringOperation.stringOperations("ab", "combination");
-			stringOperation.stringOperations("abc", "permutation");
-		} catch (CustomException exception) {
-			System.out.println(exception);
-		}
+		strOps.stringOperations("ab", "combination");
+		strOps.stringOperations("abc", "permutation");
 
 	}
 }
