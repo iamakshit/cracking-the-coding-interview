@@ -324,9 +324,20 @@ public class StringOperations {
 		}
 	}
 
+	/*
+	 * https://www.geeksforgeeks.org/extract-maximum-numeric-value-given-string/
+	 */
+	public static Integer findTheHighestNumber() {
+		String input = "100--564---365--";
+		input = input.replaceAll("-+", "-"); //Check how we can split a number here easily
+		String[] inputs = input.split("-");  
+		//TODO the methos is incomplete. Needs to be completed.
+		return null;
+	}
+
 	/******************************************************************************************/
 
-	//https://practice.geeksforgeeks.org/problems/recursively-remove-all-adjacent-duplicates/0
+	// https://practice.geeksforgeeks.org/problems/recursively-remove-all-adjacent-duplicates/0
 	public static String removeAdjacentDuplicates(String input) {
 		StringBuilder output = new StringBuilder();
 		for (int i = 0; i < input.length(); i++) {
@@ -350,6 +361,6 @@ public class StringOperations {
 		System.out.println(removeAdjacentDuplicates("acaaabbbacdddd"));
 		String x = "0";
 		String y = "1";
-		
+
 	}
 }

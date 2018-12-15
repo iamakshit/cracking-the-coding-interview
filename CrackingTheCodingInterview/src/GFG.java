@@ -1,6 +1,7 @@
-import java.util.*;
-import java.lang.*;
-import java.io.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
 
 class GFG {
 	public static HashMap<Integer, Integer> map = new HashMap<>();
@@ -42,7 +43,7 @@ class GFG {
 	}
 
 	public static void main(String[] args) {
-		Scanner ak = new Scanner(System.in);
+		/*Scanner ak = new Scanner(System.in);
 		String countStr = ak.nextLine();
 		Integer count = Integer.parseInt(countStr);
 		String x = ak.nextLine();
@@ -51,5 +52,25 @@ class GFG {
 			customDisplay(strList);
 			count -= 1;
 		}
+		*/
+		
+		String x = "Akshit";
+		String y = new String("Akshit");
+		
+		if(x == y)
+		{
+			System.out.println(1);
+		}
+		
+		if(x.equals(y))
+		{
+			System.out.println(2);
+		}
+		
+		if(x.compareTo(y)==0)
+		{
+			System.out.println(2);
+		}
+		
 	}
 }
