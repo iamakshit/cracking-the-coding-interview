@@ -7,14 +7,14 @@ public class MergeSort {
 	// Merges two subarrays of arr[].
 	// First subarray is arr[l..m]
 	// Second subarray is arr[m+1..r]
-	void merge(int arr[], int l, int m, int r) {
+	static void merge(int arr[], int l, int m, int r) {
 		// Find sizes of two subarrays to be merged
 		int n1 = m - l + 1;
 		int n2 = r - m;
 
 		/* Create temp arrays */
-		int L[] = Arrays.copyOfRange(arr, l, m+1);
-		int R[] = Arrays.copyOfRange(arr, m+1, r+1);
+		int L[] = Arrays.copyOfRange(arr, l, m + 1);
+		int R[] = Arrays.copyOfRange(arr, m + 1, r + 1);
 
 		/* Merge the temp arrays */
 
@@ -51,7 +51,7 @@ public class MergeSort {
 
 	// Main function that sorts arr[l..r] using
 	// merge()
-	public void sort(int arr[], int l, int r) {
+	public static void sort(int arr[], int l, int r) {
 		if (l < r) {
 			// Find the middle point
 			int m = (l + r) / 2;
@@ -65,11 +65,18 @@ public class MergeSort {
 		}
 	}
 
-	public void displayArray(int[] a) {
+	public static void displayArray(int[] a) {
 		for (int i : a) {
 			System.out.print(i + " ");
 		}
 		System.out.println();
+	}
+
+	public static void main(String[] args) {
+
+		int [] a = {38 ,27 ,43 ,3 ,9 ,82 ,10};
+		sort(a,0,a.length-1);
+		displayArray(a);
 	}
 
 }

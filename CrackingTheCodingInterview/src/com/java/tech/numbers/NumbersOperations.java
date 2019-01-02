@@ -169,7 +169,6 @@ public class NumbersOperations {
 	}
 
 	private void swap(int[] list, int i, int biggestIndex) {
-		// TODO Auto-generated method stub
 		int temp = list[i];
 		list[i] = list[biggestIndex];
 		list[biggestIndex] = temp;

@@ -113,7 +113,6 @@ public class MainClass {
 			System.out.println(hashMap.get("AB"));
 
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
